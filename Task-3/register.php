@@ -2,50 +2,99 @@
 
 include 'db.php';
 
-if(isset($_POST['submit']))
-{
+if(isset($_POST['submit'])){
+
     $name = $_POST['name'];
     $email = $_POST['email'];
     $department = $_POST['department'];
     $percentage = $_POST['percentage'];
     $skills = $_POST['skills'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $profile_pic = $_FILES['profile_pic']['name'];
+    $password = password_hash(
+        $_POST['password'],
+        PASSWORD_DEFAULT
+    );
+
+    // ELIGIBILITY
+    if($percentage >= 75){
+
+        $eligibility = "Eligible";
+        $placement_status = "Ready for Placements";
+
+    }else{
+
+        $eligibility = "Not Eligible";
+        $placement_status = "Improve Percentage";
+
+    }
+
+    // IMAGE UPLOAD
+    $image = $_FILES['profile_pic']['name'];
+    $temp = $_FILES['profile_pic']['tmp_name'];
 
     move_uploaded_file(
-        $_FILES['profile_pic']['tmp_name'],
-        "uploads/".$profile_pic
+        $temp,
+        "uploads/".$image
     );
 
-    $eligibility = ($percentage >= 60) ? "Eligible" : "Not Eligible";
-
-    $placement_status = "Not Placed";
-
-    mysqli_query(
+    // CHECK EMAIL EXISTS
+    $check = mysqli_query(
         $conn,
-        "INSERT INTO students
-        (name,email,department,percentage,skills,password,profile_pic,eligibility,placement_status)
-
-        VALUES
-        ('$name','$email','$department','$percentage','$skills','$password','$profile_pic','$eligibility','$placement_status')"
+        "SELECT * FROM students WHERE email='$email'"
     );
 
-    echo "<script>alert('Registration Successful');</script>";
+    if(mysqli_num_rows($check) > 0){
+
+        echo "<script>alert('Email Already Exists');</script>";
+
+    }else{
+
+        $stmt = mysqli_prepare(
+            $conn,
+            "INSERT INTO students
+            (name,email,department,percentage,skills,password,eligibility,placement_status,profile_pic)
+            VALUES(?,?,?,?,?,?,?,?,?)"
+        );
+
+        mysqli_stmt_bind_param(
+            $stmt,
+            "sssssssss",
+            $name,
+            $email,
+            $department,
+            $percentage,
+            $skills,
+            $password,
+            $eligibility,
+            $placement_status,
+            $image
+        );
+
+        if(mysqli_stmt_execute($stmt)){
+
+            echo "<script>alert('Registration Successful');</script>";
+
+        }else{
+
+            echo "<script>alert('Registration Failed');</script>";
+
+        }
+
+    }
+
 }
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <title>Register</title>
+<title>Student Registration</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -53,13 +102,9 @@ if(isset($_POST['submit']))
 
 <div class="main-container">
 
-    <div class="title">
-        Campus Placement Portal
-    </div>
-
     <div class="container">
 
-        <h2>Student Registration</h2>
+        <h2>Campus Placement Portal</h2>
 
         <form method="POST" enctype="multipart/form-data">
 
@@ -113,7 +158,7 @@ if(isset($_POST['submit']))
         <br>
 
         <a href="login.php">
-            Already have account? Login
+            Already have an account? Login
         </a>
 
     </div>
@@ -122,40 +167,3 @@ if(isset($_POST['submit']))
 
 </body>
 </html>
-=======
-$conn = mysqli_connect(
-    "localhost",
-    "root",
-    "",
-    "user_auth"
-);
-
-if(!$conn){
-
-    die("Connection Failed");
-
-}
-
-$name = $_POST['name'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-
-
-$sql = "INSERT INTO users(name,email,password)
-
-VALUES('$name','$email','$password')";
-
-
-if(mysqli_query($conn,$sql)){
-
-    echo "DATA INSERTED SUCCESSFULLY ✅";
-
-}
-
-else{
-
-    echo mysqli_error($conn);
-
-}
-
-?>
