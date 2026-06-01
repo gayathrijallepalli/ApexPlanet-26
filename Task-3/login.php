@@ -1,4 +1,3 @@
-
 <?php
 
 include 'db.php';
@@ -17,23 +16,13 @@ if(isset($_POST['login'])){
 
         $student = mysqli_fetch_assoc($query);
 
-        // FOR HASHED PASSWORDS
+        // Verify hashed password
         if(password_verify($password, $student['password'])){
 
             header("Location: dashboard.php?id=".$student['id']);
             exit();
 
-        }
-
-        // FOR NORMAL PASSWORDS
-        else if($password == $student['password']){
-
-            header("Location: dashboard.php?id=".$student['id']);
-            exit();
-
-        }
-
-        else{
+        }else{
 
             echo "<script>alert('Wrong Password');</script>";
 
@@ -54,21 +43,17 @@ if(isset($_POST['login'])){
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <title>Login</title>
+<title>Student Login</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
 <div class="main-container">
-
-    <div class="title">
-        Campus Placement Portal
-    </div>
 
     <div class="container">
 
@@ -88,11 +73,19 @@ if(isset($_POST['login'])){
             placeholder="Enter Password"
             required>
 
-            <button type="submit" name="login">
-                Login
+            <button
+            type="submit"
+            name="login">
+            Login
             </button>
 
         </form>
+
+        <br>
+
+        <a href="register.php">
+            New User? Register Here
+        </a>
 
     </div>
 
@@ -100,62 +93,3 @@ if(isset($_POST['login'])){
 
 </body>
 </html>
-=======
-<?php
-
-$conn = mysqli_connect(
-    "localhost",
-    "root",
-    "",
-    "user_auth"
-);
-
-if(!$conn){
-
-    die("Connection Failed");
-
-}
-
-$email = $_POST['email'];
-$password = $_POST['password'];
-
-
-$check = mysqli_query(
-
-$conn,
-
-"SELECT * FROM users
- WHERE email='$email'
- AND password='$password'"
-
-);
-
-
-if(mysqli_num_rows($check) > 0){
-
-    $row = mysqli_fetch_assoc($check);
-
-    $name = $row['name'];
-
-    header("Location: home.php?name=$name");
-
-}
-
-else{
-
-    echo "
-
-    <script>
-
-    alert('Invalid Email or Password ❌');
-
-    window.location.href='index.html';
-
-    </script>
-
-    ";
-
-}
-
-?>
-
