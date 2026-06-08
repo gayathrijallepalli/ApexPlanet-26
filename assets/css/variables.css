@@ -1,0 +1,100 @@
+/* ============================================================
+   SmartHire Pro — FutureTech Design System Tokens
+   ============================================================ */
+
+:root {
+    /* --- Core Palette --- */
+    --ft-bg:           #020617;
+    --ft-surface:      #0F172A;
+    --ft-card:         #0F172A;
+    --ft-card-hover:   #1E293B;
+    --ft-border:       rgba(255,255,255,0.07);
+    --ft-border-light: rgba(255,255,255,0.12);
+
+    /* --- Brand Colors --- */
+    --ft-primary:   #3B82F6;
+    --ft-primary-d: #2563EB;
+    --ft-secondary: #06B6D4;
+    --ft-violet:    #8B5CF6;
+    --ft-success:   #22C55E;
+    --ft-warning:   #F59E0B;
+    --ft-danger:    #EF4444;
+
+    /* --- Text --- */
+    --ft-text:      #F8FAFC;
+    --ft-muted:     #94A3B8;
+    --ft-muted-d:   #64748B;
+
+    /* --- Gradients --- */
+    --grad-blue-cyan:    linear-gradient(135deg, #2563EB, #06B6D4);
+    --grad-blue-violet:  linear-gradient(135deg, #3B82F6, #8B5CF6);
+    --grad-cyan-green:   linear-gradient(135deg, #06B6D4, #22C55E);
+    --grad-warn:         linear-gradient(135deg, #F59E0B, #EF4444);
+    --grad-hero:         linear-gradient(135deg, #020617 0%, #0F172A 40%, #1e2d4d 100%);
+    --grad-card-border:  linear-gradient(135deg, rgba(59,130,246,0.3), rgba(6,182,212,0.3));
+    --grad-sidebar:      linear-gradient(180deg, #0B1628 0%, #0F172A 100%);
+
+    /* --- Glass --- */
+    --glass-bg:     rgba(15,23,42,0.6);
+    --glass-bg-md:  rgba(15,23,42,0.8);
+    --glass-border: rgba(255,255,255,0.08);
+    --glass-blur:   blur(12px);
+    --glass-blur-sm: blur(6px);
+
+    /* --- Shadows --- */
+    --shadow-sm:   0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md:   0 4px 20px rgba(0,0,0,0.5);
+    --shadow-lg:   0 8px 40px rgba(0,0,0,0.6);
+    --shadow-blue: 0 0 30px rgba(59,130,246,0.2);
+    --shadow-cyan: 0 0 30px rgba(6,182,212,0.2);
+    --shadow-glow: 0 0 20px rgba(59,130,246,0.4);
+
+    /* --- Sizing --- */
+    --ft-radius:    14px;
+    --ft-radius-sm: 8px;
+    --ft-radius-lg: 20px;
+    --sidebar-w:    260px;
+
+    /* --- Transitions --- */
+    --transition-fast:   all 0.15s ease;
+    --transition-base:   all 0.25s ease;
+    --transition-slow:   all 0.4s ease;
+
+    /* --- Legacy shp aliases (backward compat) --- */
+    --shp-primary:  var(--ft-surface);
+    --shp-secondary:var(--ft-primary);
+    --shp-accent:   var(--ft-secondary);
+    --shp-bg:       var(--ft-bg);
+    --shp-card:     var(--ft-card);
+    --shp-text:     var(--ft-text);
+    --shp-muted:    var(--ft-muted);
+    --shp-border:   var(--ft-border);
+    --shp-shadow:   var(--shadow-md);
+    --shp-radius:   var(--ft-radius);
+    --shp-sidebar-width: var(--sidebar-w);
+}
+
+/* ── Light Mode Override (optional toggle) ── */
+[data-theme="light"] {
+    --ft-bg:           #F0F4FF;
+    --ft-surface:      #ffffff;
+    --ft-card:         #ffffff;
+    --ft-card-hover:   #F8FAFC;
+    --ft-border:       rgba(0,0,0,0.08);
+    --ft-border-light: rgba(0,0,0,0.12);
+    --ft-text:         #0F172A;
+    --ft-muted:        #64748B;
+    --ft-muted-d:      #94A3B8;
+    --glass-bg:        rgba(255,255,255,0.7);
+    --glass-bg-md:     rgba(255,255,255,0.9);
+    --glass-border:    rgba(0,0,0,0.08);
+    --grad-sidebar:    linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+    --shadow-sm:   0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md:   0 4px 20px rgba(0,0,0,0.12);
+    --shadow-lg:   0 8px 40px rgba(0,0,0,0.15);
+    --shp-bg:      var(--ft-bg);
+    --shp-card:    var(--ft-card);
+    --shp-text:    var(--ft-text);
+    --shp-muted:   var(--ft-muted);
+    --shp-border:  var(--ft-border);
+}

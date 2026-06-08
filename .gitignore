@@ -1,0 +1,13 @@
+/vendor/
+/config/app.php
+/uploads/resumes/*
+/uploads/photos/*
+/uploads/logos/*
+!/uploads/resumes/.gitkeep
+!/uploads/photos/.gitkeep
+!/uploads/logos/.gitkeep
+/logs/*
+!/logs/.gitkeep
+*.log
+.DS_Store
+Thumbs.db

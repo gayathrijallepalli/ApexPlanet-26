@@ -1,0 +1,13 @@
+{
+    "name": "smarthire/pro",
+    "description": "SmartHire Pro - Recruitment & Placement Management System",
+    "require": {
+        "php": ">=8.0",
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "SmartHire\\": "services/"
+        }
+    }
+}

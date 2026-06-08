@@ -1,0 +1,2 @@
+-- Run install.php after schema import to create admin user with hashed password
+-- Default admin: admin@smarthire.pro / Admin@123

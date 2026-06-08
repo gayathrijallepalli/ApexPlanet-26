@@ -1,0 +1,20 @@
+/* dark-mode.css — Theme toggle, defaults to dark */
+
+/* Default to dark already set in variables.css :root */
+/* This file handles light-mode class toggle from JS */
+
+[data-theme="light"] .bi-moon-stars::before { content: "\f497"; } /* sun icon */
+[data-theme="dark"]  .bi-sun::before         { content: "\f45f"; } /* moon icon */
+
+/* Transition for smooth theme swap */
+body,
+.dashboard-sidebar,
+.dashboard-topbar,
+.ft-stat-card,
+.job-list-card,
+.feature-card,
+.glass-card,
+.shp-card,
+.stat-card {
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
