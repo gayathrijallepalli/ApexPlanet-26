@@ -1,0 +1,89 @@
+/* style.css */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#00b894,#0984e3);
+}
+
+.form-box{
+    background:white;
+    padding:40px;
+    border-radius: 10px 40px 10px 40px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    animation:fadeIn 1s ease;
+}
+
+.toggle-btn{
+    border:none;
+    padding:10px 25px;
+    border-radius:10px 40px 10px 40px;
+    background:#dfe6e9;
+    margin:5px;
+    transition:0.3s;
+    font-weight:600;
+}
+
+.active-btn{
+    background:#00b894;
+    color:white;
+}
+
+.toggle-btn:hover{
+    transform:scale(1.05);
+}
+
+.custom-btn{
+    background:#00b894;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:10px;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.custom-btn:hover{
+    background:#019875;
+    transform:translateY(-2px);
+}
+
+.form-control{
+    padding:12px;
+    border-radius:10px;
+}
+
+.password-box{
+    position:relative;
+}
+
+.toggle-password{
+    position:absolute;
+    right:15px;
+    top:12px;
+    cursor:pointer;
+}
+
+#message{
+    font-size:14px;
+    font-weight:500;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
